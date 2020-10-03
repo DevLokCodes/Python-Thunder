@@ -5,10 +5,27 @@
 '''
 
 
+#
+
+# Working
+# Takes input from Function FormattingNumber() [eg: 123 (type: <int>)]
+# The input number is converted into String type for better String Manupulation
+# We intial a result string (String), and a initial string (Dictionary) that contains reference numbers in english
+
+# We check if the user input already exists in our dictionary, if so we return the english version [eg: 14 --> fourteen]
+#### --Taking example as 569-- ####
+
+# Otherwise, we first divide all digits in 3 parts that is for (0 - 999) in this case [5 6 9]
+# We now start from the MSP(Most Significant Place [eg: 5 is MSP in 569])
+# We get value of 5 from dictionary and append it with string "hundred" and update it in result string
+# Using dict.get(5)
+
+# We do the same for other digits
+# Keeping in mind the case for occurance of zero
+# Keeping in mind the case like [519] in which you have to return the value from dictionary itself
+
 def NumToEnglish(num):
     num = str(num)
-    if len(num) == 2:
-        num = "0" + num
 
     resulted_string = ""
     initial_dict = {0: "zero", 1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six", 7: "seven", 8: "eight",
@@ -35,14 +52,29 @@ def NumToEnglish(num):
     return resulted_string.strip()
 
 
+# converting all the input number in 3 digit numbers [eg: 13 --> 013, 189 --> 189]
+
+# working
+# If the number is of 2 digit add 0 in start of number
+# No need to code of case (number od digit = 1 ie 0 to 9) as this case will already be added in the dictionary
+# after conversion the formatted number is passed to Function NumToEnglish()
+
 def FormattingNumber(num):
+    num = str(num)
     if len(num) == 2:
         num = "0" + num
     return num
 
 
+# driver code   ######
+# 't' takes number of test cases as input
+# Num is the number input given by the user [eg: 132 (type: <int>)]
+
+# working
+# The code takes input (Num) from user and passes it to Function (FormattingNumber() for formatting all number in format abc) [eg: 13 --> 013, 189 --> 189]
+
 if __name__ == "__main__":
     t = int(input())
     for _ in range(t):
         Num = int(input())
-        print(NumToEnglish(Num))
+        print(NumToEnglish(FormattingNumber(Num)))
